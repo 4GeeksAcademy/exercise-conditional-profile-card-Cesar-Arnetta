@@ -22,6 +22,9 @@ import "../style/index.css";
         city: null
     }
  */
+
+//esto se encarga del fondo
+
 function render(variables = {}) {
   console.log("These are the current variables: ", variables); // print on the console
   // here we ask the logical questions to make decisions on how to build the html
@@ -29,18 +32,58 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  let nameCondition =
+    typeof variables.name === "string"
+      ? `${variables.name}`
+      : "Ingresa tu nombre";
+
+  let lastNameCondition =
+    typeof variables.lastName === "string" ? `${variables.lastName}` : "";
+
+  let roleCondition =
+    typeof variables.role === "string"
+      ? `${variables.role}`
+      : "A qué te dedicas";
+
+  let countryCondition =
+    typeof variables.country === "string" ? `${variables.country}` : "Country";
+
+  let cityCondition =
+    typeof variables.city === "string" ? `${variables.city}` : "City";
+
+  let twitterCondition =
+    typeof variables.twitter === "string" ? `${variables.twitter}` : "Twitter";
+
+  let githubCondition =
+    typeof variables.github === "string" ? `${variables.github}` : "Github";
+
+  let linkedinCondition =
+    typeof variables.linkedin === "string"
+      ? `${variables.linkedin}`
+      : "Linkedin";
+
+  let instagramCondition =
+    typeof variables.instagram === "string"
+      ? `${variables.instagram}`
+      : "Instagram";
+
+  let socialMediaPositionCondition =
+    variables.socialMediaPosition == "right"
+      ? "position-left"
+      : `${variables.socialMediaPosition}`;
+
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${nameCondition} ${lastNameCondition}</h1>
+          <h2>${roleCondition}</h2>
+          <h3>${countryCondition} ${cityCondition}</h3>
+          <ul class="${socialMediaPositionCondition}">
+            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a>${twitterCondition}</li>
+            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a>${githubCondition}</li>
+            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a>${linkedinCondition}</li>
+            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a>${instagramCondition}</li>
           </ul>
         </div>
     `;
